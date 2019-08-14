@@ -1,4 +1,6 @@
 package view;
+import java.lang.StringBuilder;
+import java.util.ArrayList;
 public class View {
 
 	public void StartMenu() {
@@ -105,5 +107,12 @@ public class View {
 	public void printLoss() {
 		System.out.println("You lost, better luck next time.");
 		System.out.println("Press 1 to get back to the main menu or press q to quit");
+	}
+
+	public void printHighScores(String[] highScores) {
+		for (int i = 0; i < highScores.length; i++) {
+			System.out.println(highScores[i]);
+		}
+		
 	}
 }
