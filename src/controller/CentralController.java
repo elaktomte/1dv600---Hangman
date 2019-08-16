@@ -6,6 +6,7 @@ import view.View;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class CentralController {
 	}
 
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		CentralController controller;
 		hs = new HighScore();
 		controller = new CentralController();
@@ -65,9 +66,6 @@ public class CentralController {
 		hidden = new boolean[word.length()];
 		view.printString(BuildCorrectString(hidden));
 		guesses = 0;
-	}
-	public void Victory() {
-		System.out.println("You won!");
 	}
 	public String BuildCorrectString(boolean[] hiddn) {
 		sb= new StringBuilder();
@@ -137,6 +135,7 @@ public class CentralController {
 		}
 		if (i == 2) {
 			view.printHighScores(hs.getHighScores());
+			Start();
 		}
 		if (i == 3) { 
 			System.exit(0);

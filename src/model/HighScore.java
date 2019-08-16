@@ -3,26 +3,52 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 public class HighScore {
 	String[] Names = new String[5];
 	int[] Scores = new int[5];
 
-	public HighScore() throws FileNotFoundException {
-		File file = new File("HighScores.txt");
-		Scanner scan = new Scanner(file);
-
-		for (int i = 0; i< 5; i++) {
-			String currentString = scan.nextLine();
-			for (int j = 0; j < currentString.length(); j++) {
-				if (currentString.charAt(j) == ',') {
-					int splitIndex= j;
-					Names[i] = currentString.substring(0, splitIndex);
-					Scores[i] = Integer.parseInt(currentString.substring(splitIndex+1, currentString.length()));
+	public HighScore() throws FileNotFoundException, UnsupportedEncodingException {
+		if (!new File("HighScores.txt").exists()) {
+			PrintWriter writer = new PrintWriter("HighScores.txt", "UTF-8");
+			for(int i = 0; i < 5; i++) {
+				writer.println("NOPLAYER, 50\n");
+			}
+			writer.close();
+		}
+		else {
+			File file = new File("HighScores.txt");
+			Scanner scan = new Scanner(file);
+			int counter = 0;
+			while (scan.hasNextLine()){
+				counter++;
+				scan.nextLine();
+			}
+			if (counter < 5) {
+				PrintWriter writer = new PrintWriter("HighScores.txt", "UTF-8");
+				for (int i = 0; i < 5; i++) {
+					writer.println("NOPLAYER, 50\n");
 				}
 			}
+			scan = new Scanner(file);
+				for (int i = 0; i< 5; i++) {
+					String currentString = scan.nextLine();
+					for (int j = 0; j < currentString.length(); j++) {
+						if (currentString.charAt(j) == ',') {
+							int splitIndex= j;
+							Names[i] = currentString.substring(0, splitIndex);
+							Scores[i] = Integer.parseInt(currentString.substring(splitIndex+1, currentString.length()));
+						}
+					}
+				}
+			
+
+
 		}
+
 	}
 	public void updateHighScores() throws IOException {
 		File file = new File("HighScores.txt");
