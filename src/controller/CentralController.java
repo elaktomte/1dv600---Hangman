@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class CentralController {
 	View view = new View();
-	WordList list = new WordList();
+	
 	String word;
 	int guesses = 0;
 	boolean[] hidden;
@@ -60,8 +60,9 @@ public class CentralController {
 		}
 		return -1;
 	}
-	public void NewGame() {
+	public void NewGame() throws IOException {
 		view.Gallows(0);
+		WordList list = new WordList();
 		word = list.randomWord();
 		hidden = new boolean[word.length()];
 		view.printString(BuildCorrectString(hidden));
@@ -138,6 +139,15 @@ public class CentralController {
 			Start();
 		}
 		if (i == 3) { 
+			System.out.println("What word do you wish to add?");
+			Scanner scan = new Scanner(System.in);
+			String word = scan.nextLine();
+			WordList list = new WordList();
+			list.addWord(word);
+			//scan.close();  Throws exception for some reason.
+			this.Start();
+		}
+		if (i == 4) { 
 			System.exit(0);
 		}
 		else {

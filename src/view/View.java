@@ -7,7 +7,8 @@ public class View {
 		System.out.println("Welcome! Use the number keys to navigate");
 		System.out.println("[1] Start a new game");
 		System.out.println("[2] Check the high scores");
-		System.out.println("[3] Quit");
+		System.out.println("[3] Add a new word");
+		System.out.println("[4] Quit");
 	}
 	
 	public void printString(String str) {
